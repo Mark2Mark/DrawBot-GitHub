@@ -39,6 +39,11 @@ drawPath(path)
 
 path.text(string, font=theFont, fontSize=fontS)
 
+def handle(lPoint, handle):
+    strokeWidth(.4)
+    stroke(1, 0, 0, .3)
+    line(lPoint, handle)
+
 def drawHandles(path, dm = 3, alpha = 1):
     save()
 
@@ -49,19 +54,12 @@ def drawHandles(path, dm = 3, alpha = 1):
         strokeWidth(dm/5)
         for segment in contour:
             if len(segment) > 1:
-                stroke(0.5)
                 fHandle = segment[0]
-                newPath()
-                moveTo(lPoint)
-                lineTo(fHandle)
-                drawPath()
+                handle(lPoint, fHandle)
                 
                 lPoint = segment[2]
-                sHandle = segment[1]                    
-                newPath()
-                moveTo(lPoint)
-                lineTo(sHandle)
-                drawPath()
+                sHandle = segment[1]
+                handle(lPoint, sHandle)
                 
                 fill(0,.6,1, alpha)
                 stroke(None)
