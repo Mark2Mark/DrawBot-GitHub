@@ -47,8 +47,6 @@ def handle(lPoint, handle):
 def drawHandles(path, dm = 3, alpha = 1):
     save()
 
-    strokeWidth(.3)
-
     for contour in path.contours[:]:
         lPoint = contour[0][0]
         strokeWidth(dm/5)
