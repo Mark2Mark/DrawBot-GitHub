@@ -34,7 +34,7 @@ labelSize = 4
 # create a bezier path
 path = BezierPath()
 path.closePath()
-fill(0,0,0, .3)
+fill(0,0,0, .2)
 drawPath(path)
 
 path.text(string, font=theFont, fontSize=fontS)
@@ -44,7 +44,10 @@ def handle(lPoint, handle):
     stroke(1, 0, 0, .3)
     line(lPoint, handle)
 
-def drawHandles(path, dm = 3, alpha = 1):
+def offOval(handle, dm):
+    oval(handle[0]-dm/2, handle[1]-dm/2, dm, dm)
+
+def drawHandles(path, dm = 2, alpha = .6):
     save()
 
     for contour in path.contours[:]:
@@ -61,8 +64,8 @@ def drawHandles(path, dm = 3, alpha = 1):
                 
                 fill(0,.6,1, alpha)
                 stroke(None)
-                oval(fHandle[0]-dm/3, fHandle[1]-dm/3, dm, dm)
-                oval(sHandle[0]-dm/3, sHandle[1]-dm/3, dm, dm)
+                offOval(fHandle, dm)
+                offOval(sHandle, dm)
             else:
                 lPoint = segment[0]
             fill(1,.3,0, alpha)
