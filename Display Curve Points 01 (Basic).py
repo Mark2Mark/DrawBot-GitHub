@@ -39,23 +39,44 @@ drawPath(path)
 
 path.text(string, font=theFont, fontSize=fontS)
 
-def drawPoints(fyll, strouk, dm, label):
-    fill(*fyll)
-    stroke(strouk)
+def drawHandles(path, dm = 3, alpha = 1):
+    save()
+
     strokeWidth(.3)
-    x, y = point
-    oval(x-(dm/2), y-(dm/2), dm, dm)
-    ### labels
-    fontSize(labelSize)
-    stroke(None)
-    if label:
-        text(str(int(x)) + "/" + str(int(y)), (x + shiftX, y + shiftY))
 
-for point in path.onCurvePoints:
-    drawPoints(c1, None, 4, True)
+    for contour in path.contours[:]:
+        lPoint = contour[0][0]
+        strokeWidth(dm/5)
+        for segment in contour:
+            if len(segment) > 1:
+                stroke(0.5)
+                fHandle = segment[0]
+                newPath()
+                moveTo(lPoint)
+                lineTo(fHandle)
+                drawPath()
+                
+                lPoint = segment[2]
+                sHandle = segment[1]                    
+                newPath()
+                moveTo(lPoint)
+                lineTo(sHandle)
+                drawPath()
+                
+                fill(0,.6,1, alpha)
+                stroke(None)
+                oval(fHandle[0]-dm/3, fHandle[1]-dm/3, dm, dm)
+                oval(sHandle[0]-dm/3, sHandle[1]-dm/3, dm, dm)
+            else:
+                lPoint = segment[0]
+            fill(1,.3,0, alpha)
+            rect(lPoint[0]-dm/2, lPoint[1]-dm/2, dm, dm)
+            fontSize(labelSize)
+            text(str(int(lPoint[0])) + "/" + str(int(lPoint[1])), (lPoint[0] + shiftX, lPoint[1] + shiftY))
+    restore()
 
-for point in path.offCurvePoints:
-    drawPoints(c2, (.6), 3, False)
+
+drawHandles(path)
     
 #################
 ### reset to displayed font instead of the label font
@@ -68,3 +89,4 @@ stroke(2, 0, 0, .5)
 for metric in (0, fontDescender(), fontAscender(), fontXHeight(), fontCapHeight()):
     line((lA, metric), (lB, metric))
     print metric
+    
