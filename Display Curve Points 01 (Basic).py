@@ -18,7 +18,7 @@
 width, height = 400, 300
 size(width, height)
 string = "Iypl"
-theFont = "Times"
+theFont = "LucidaGrande"
 fontS = 220
 translate(10, 80)
 
