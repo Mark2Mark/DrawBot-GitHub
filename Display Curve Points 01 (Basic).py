@@ -50,7 +50,7 @@ def offOval(handle, dm):
 def drawHandles(path, dm = 2, alpha = .6):
     save()
 
-    for contour in path.contours[:]:
+    for contour in path.contours:
         lPoint = contour[0][0]
         strokeWidth(dm/5)
         for segment in contour:
