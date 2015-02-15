@@ -4,6 +4,7 @@
 #
 # --> let me know if you have ideas for improving
 # --> Mark Froemberg aka DeutschMark @ GitHub <--
+# --> www.mirque.de <--
 #
 # ToDO: - set and bind UPM with font size
 #     - scale after for paper fit
