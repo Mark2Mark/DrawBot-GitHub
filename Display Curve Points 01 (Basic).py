@@ -4,7 +4,7 @@
 #
 # --> let me know if you have ideas for improving
 # --> Mark Froemberg aka DeutschMark @ GitHub <--
-# --> www.mirque.de <--
+# --> www.markfromberg.com <--
 #
 # ToDO: - set and bind UPM with font size
 #     - scale after for paper fit
@@ -89,4 +89,3 @@ stroke(2, 0, 0, .5)
 for metric in (0, fontDescender(), fontAscender(), fontXHeight(), fontCapHeight()):
     line((lA, metric), (lB, metric))
     print metric
-    
